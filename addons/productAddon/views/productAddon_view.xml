@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="edit_product_template">
+        <xpath expr="//field[@name='name']" position="after">
+            <field name="slug" string="Slug" readonly="1" compute="_compute_slug"/>
+            <field name="additional_barcode" string="Additional Barcode" required="1" onchange="_check_unique_barcode"/>
+        </xpath>
+    </template>
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.form</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <template ref="edit_product_template"/>
+            </form>
+        </field>
+    </record>
+</odoo>
